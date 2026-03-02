@@ -45,7 +45,7 @@ on:
 jobs:
   build:
     if: github.event.repository.owner.id == github.event.sender.id
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     steps:
@@ -86,7 +86,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         distribution: 'zulu'
-        java-version: '11'
+        java-version: '8'
 
     - name: Setup SSH Keys
       if: ${{ startsWith(github.event.inputs.MANIFEST_URL, 'git@github.com') || 
@@ -146,7 +146,7 @@ jobs:
 
     - name: Switch to Python2
       run: |
-        sudo apt -y install python
+        sudo apt -y install python2
         sudo rm -rf /usr/bin/python
         sudo ln -s /usr/bin/python2 /usr/bin/python
         # sudo ln -s /usr/bin/python3 /usr/bin/python3
